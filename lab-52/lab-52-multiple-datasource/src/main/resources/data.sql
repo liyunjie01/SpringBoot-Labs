@@ -1,6 +1,6 @@
 # Order
 DROP DATABASE IF EXISTS seata_order;
-CREATE DATABASE seata_order;
+CREATE DATABASE seata_order DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 
 CREATE TABLE seata_order.orders
 (
@@ -11,7 +11,7 @@ CREATE TABLE seata_order.orders
     add_time         DATETIME       DEFAULT CURRENT_TIMESTAMP,
     last_update_time DATETIME       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE seata_order.undo_log
 (
@@ -25,11 +25,11 @@ CREATE TABLE seata_order.undo_log
     log_modified  DATETIME     NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY ux_undo_log (xid, branch_id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 # Product
 DROP DATABASE IF EXISTS seata_product;
-CREATE DATABASE seata_product;
+CREATE DATABASE seata_product  DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 
 CREATE TABLE seata_product.product
 (
@@ -37,7 +37,7 @@ CREATE TABLE seata_product.product
     stock            INT(11)  DEFAULT NULL,
     last_update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 INSERT INTO seata_product.product (id, stock) VALUES (1, 10); # 插入一条产品的库存
 
 CREATE TABLE seata_product.undo_log
@@ -52,11 +52,11 @@ CREATE TABLE seata_product.undo_log
     log_modified  DATETIME     NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY ux_undo_log (xid, branch_id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 # Account
 DROP DATABASE IF EXISTS seata_account;
-CREATE DATABASE seata_account;
+CREATE DATABASE seata_account DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 
 CREATE TABLE seata_account.account
 (
@@ -64,7 +64,7 @@ CREATE TABLE seata_account.account
     balance          DOUBLE   DEFAULT NULL,
     last_update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1  DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 CREATE TABLE seata_account.undo_log
 (
@@ -78,6 +78,6 @@ CREATE TABLE seata_account.undo_log
     log_modified  DATETIME     NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY ux_undo_log (xid, branch_id)
-) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
+) ENGINE = InnoDB AUTO_INCREMENT = 1;
 INSERT INTO seata_account.account (id, balance) VALUES (1, 10);
 
